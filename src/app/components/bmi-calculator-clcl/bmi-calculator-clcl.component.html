@@ -1,0 +1,33 @@
+<div class="bmi-calculator">
+    <h2>Calculadora de Índice de Masa Corporal (BMI)</h2>
+    <form (ngSubmit)="calculateBMI()">
+        <div class="gender-group mt-3">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-secondary" [class.active]="gender === 'male'" (click)="gender = 'male'">
+                    <input type="radio" name="gender" id="male" autocomplete="off" [checked]="gender === 'male'">
+                    <img class="img-fluid img-thumbnail icon" src="../../../assets/img/masculino.png" alt="Male">
+                </label>
+                <label class="btn btn-secondary" [class.active]="gender === 'female'" (click)="gender = 'female'">
+                    <input type="radio" name="gender" id="female" autocomplete="off" [checked]="gender === 'female'">
+                    <img src="../../../assets/img/femenino.png" alt="Female" class="img-fluid img-thumbnail icon">
+                </label>
+            </div>
+        </div>
+        <div class="form-group mt-4">
+            <label for="customRange1" class="font-weight-bold">Altura (cm): {{ height }}</label>
+            <input type="range" class="custom-range" id="customRange1" [(ngModel)]="height" min="100" max="250" step="1" name="height">
+        </div>        
+        <div class="input-group mt-5">
+            <label for="weight">Peso (kg):</label>
+            <input type="number" id="weight" name="weight" [(ngModel)]="weight" required>
+        </div>
+        <div class="input-group">
+            <label for="age">Edad (años):</label>
+            <input type="number" id="age" name="age" [(ngModel)]="age" required>
+        </div>
+        <button type="submit" id="calculateButton" class="btn btn-primary">Calcular BMI</button>
+    </form>
+    <div class="result" *ngIf="bmi">
+        <h3>Tu BMI es: {{ bmi.toFixed(2) }}</h3>
+    </div>
+</div>
